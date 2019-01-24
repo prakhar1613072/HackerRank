@@ -1,0 +1,37 @@
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the encryption function below.
+def encryption(s):
+    p=''
+    n=math.ceil(len(s)**(1/2))
+    d=math.floor(len(s)**(1/2))
+    print(n,d)
+    if n*d <len(s):
+        d=d+1
+    for i in range(n):
+        for j in range(d):
+            temp=i+j*n
+            print(temp)
+            if(temp<len(s)):
+                p+=s[temp]
+        p+=" "        
+    return p            
+             
+            
+            
+            
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = encryption(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
