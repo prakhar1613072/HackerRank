@@ -1,0 +1,18 @@
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the extraLongFactorials function below.
+def extraLongFactorials(n):
+    pro=1
+    for i in range(1,n+1):
+        pro=(i*pro)
+    print(pro)    
+    return pro    
+
+if __name__ == '__main__':
+    n = int(input())
+
+    extraLongFactorials(n)
