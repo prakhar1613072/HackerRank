@@ -1,0 +1,91 @@
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the bfs function below.
+def bfs(n, m, edges, s):
+    l=[]
+    d={}
+    que=[]
+    a=[]
+    fi=[]
+    for i in range(n):
+        d[i]=0
+        l.append([])
+        
+    for i in range(n):
+        for j in range(n):
+                l[i].append(-1)
+    
+    for k in edges:
+        l[k[0]-1][k[1]-1]=6
+        l[k[1]-1][k[0]-1]=6
+            
+    print(l)                    
+    d[s-1]=0                
+    que.append(s-1) 
+    i=1
+    pre=-1
+    z=1
+    count=0
+    while len(que)!=0:
+        
+        z-=1
+        for k in range(n):
+            
+            
+            if l[que[0]][k]==6 and (k not in que) and (k not in a):
+                
+                count+=1
+                print(que,k)
+                que.append(k)
+                d[k]=6*i
+                
+                
+        if count>0 and z<=0:
+            i+=1
+            z=count
+            count=0
+            
+            
+        a.append(que.pop(0))
+    for i in range(n):  
+        if i!=(s-1):
+            if(i in a):
+                fi.append(d[i])
+            else:
+                fi.append(-1)
+    return fi        
+            
+            
+        
+        
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+
+    for q_itr in range(q):
+        nm = input().split()
+
+        n = int(nm[0])
+
+        m = int(nm[1])
+
+        edges = []
+
+        for _ in range(m):
+            edges.append(list(map(int, input().rstrip().split())))
+
+        s = int(input())
+
+        result = bfs(n, m, edges, s)
+
+        fptr.write(' '.join(map(str, result)))
+        fptr.write('\n')
+
+    fptr.close()
